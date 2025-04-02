@@ -11,9 +11,12 @@ import plm.model.Document;
 @Repository
 @Transactional
 public class DocumentDao {
-	
-	@Autowired
-	private SessionFactory sessionFactory;
+
+	private final SessionFactory sessionFactory;
+
+	public DocumentDao(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	public Document get(String reference, String version, int iteration) {
     	//

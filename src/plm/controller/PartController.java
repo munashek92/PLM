@@ -1,16 +1,18 @@
 package plm.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import plm.services.PartService;
 
+@RestController
+@RequestMapping("/")
 public class PartController {
-	
-    @Autowired
-    private PartService partService;
+
+    private  final PartService partService;
+
+	public PartController(PartService partService) {
+		this.partService = partService;
+	}
 	
 	@GetMapping(value = "/Part/reserve")
     public void reserve(@RequestHeader("userId") String userId, @RequestParam("reference") String reference, @RequestParam("version") String version, @RequestParam("iteration") int iteration) {
