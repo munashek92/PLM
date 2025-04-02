@@ -1,16 +1,16 @@
 package plm.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import plm.services.DocumentService;
 
+@RestController
+@RequestMapping("/")
 public class DocumentController {
-
-    @Autowired
-    private DocumentService documentService;
+	private final DocumentService documentService;
+	public DocumentController(DocumentService documentService) {
+		this.documentService = documentService;
+	}
 	
 	@GetMapping(value = "/Document/reserve")
     public void reserve(@RequestHeader("userId") String userId, @RequestParam("reference") String reference, @RequestParam("version") String version, @RequestParam("iteration") int iteration) {
